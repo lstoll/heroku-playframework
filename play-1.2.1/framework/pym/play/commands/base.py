@@ -75,7 +75,7 @@ def new(app, args, env, cmdloader=None):
                 if os.path.isdir(os.path.join(env["basedir"], 'modules/%s' % f)) and f.find('%s-' % m) == 0:
                     dirname = f
                     break
-        
+
         if not dirname:
             print "~ Oops. No module %s found" % m
             print "~ Try to install it using 'play install %s'" % m
@@ -97,7 +97,7 @@ def new(app, args, env, cmdloader=None):
     replaceAll(os.path.join(app.path, 'conf/application.conf'), r'%SECRET_KEY%', secretKey())
     print "~"
 
-    # Configure modules 
+    # Configure modules
     runDepsAfter = False
     for m in md:
         # Check dependencies.yml of the module
@@ -110,7 +110,7 @@ def new(app, args, env, cmdloader=None):
                 runDepsAfter = True
             except Exception:
                 pass
-                
+
     if runDepsAfter:
         cmdloader.commands['dependencies'].execute(command='dependencies', app=app, args=['--sync'], env=env, cmdloader=cmdloader)
 
@@ -121,11 +121,14 @@ def new(app, args, env, cmdloader=None):
 
 def run(app, args):
     app.check()
-    
+
     print "~ Ctrl+C to stop"
     print "~ "
     java_cmd = app.java_cmd(args)
     try:
+        print java_cmd
+        print "\n"
+        print "mm"
         subprocess.call(java_cmd, env=os.environ)
     except OSError:
         print "Could not execute the java executable, please make sure the JAVA_HOME environment variable is set properly (the java executable should reside at JAVA_HOME/bin/java). "
@@ -221,8 +224,8 @@ def autotest(app, args):
            fpcp.append(os.path.normpath(os.path.join(fpcp_libs, jar)))
     cp_args = ':'.join(fpcp)
     if os.name == 'nt':
-        cp_args = ';'.join(fpcp)    
-    java_cmd = [app.java_path(), '-classpath', cp_args, '-Dapplication.url=http://localhost:%s' % http_port, 'play.modules.testrunner.FirePhoque']    
+        cp_args = ';'.join(fpcp)
+    java_cmd = [app.java_path(), '-classpath', cp_args, '-Dapplication.url=http://localhost:%s' % http_port, 'play.modules.testrunner.FirePhoque']
     try:
         subprocess.call(java_cmd, env=os.environ)
     except OSError:
@@ -237,7 +240,7 @@ def autotest(app, args):
     if os.path.exists(os.path.join(app.path, 'test-result/result.failed')):
         print "~ Some tests have failed. See file://%s for results" % test_result
         print "~"
-    
+
     # Kill if exists
     http_port = app.readConf('http.port')
     try:
