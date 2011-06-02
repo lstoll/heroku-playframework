@@ -1,1 +1,1 @@
-web: lein run -m ring-on-heroku.core
+web: play run app
