@@ -1,1 +1,1 @@
-web: python play-1.2.1/play run app
+web: lein run -m ring-on-heroku.core
