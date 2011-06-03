@@ -242,8 +242,8 @@ class PlayApplication:
 
         if self.readConf('application.mode') == 'dev':
             if not self.play_env["disable_check_jpda"]: self.check_jpda()
-            # java_args.append('-Xdebug')
-            # java_args.append('-Xrunjdwp:transport=dt_socket,address=%s,server=y,suspend=n' % self.jpda_port)
+            java_args.append('-Xdebug')
+            java_args.append('-Xrunjdwp:transport=dt_socket,address=%s,server=y,suspend=n' % self.jpda_port)
             java_args.append('-Dplay.debug=yes')
 
         java_cmd = [self.java_path(), '-javaagent:%s' % self.agent_path()] + java_args + ['-classpath', cp_args, '-Dapplication.path=%s' % self.path, '-Dplay.id=%s' % self.play_env["id"], className] + args
