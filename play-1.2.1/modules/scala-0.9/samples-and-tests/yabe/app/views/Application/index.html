@@ -1,0 +1,26 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+ 
+#{if front}
+    
+    #{display front, as:'home' /}
+    
+    #{if older}
+    
+        <div class="older-posts">
+            <h3>Older posts <span class="from">from this blog</span></h3>
+        
+            #{list items:older}
+                #{display _, as:'teaser' /}
+            #{/list}
+        </div>
+        
+    #{/if}
+    
+#{/if}
+ 
+#{else}
+    <div class="empty">
+        There is currently nothing to read here.
+    </div>
+#{/else}
