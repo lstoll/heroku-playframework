@@ -1,3 +1,4 @@
 lib/
 *.pyc
 app/tmp
+scala_app/tmp
