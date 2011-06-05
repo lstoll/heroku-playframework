@@ -126,9 +126,6 @@ def run(app, args):
     print "~ "
     java_cmd = app.java_cmd(args)
     try:
-        print java_cmd
-        print "\n"
-        print "mm"
         subprocess.call(java_cmd, env=os.environ)
     except OSError:
         print "Could not execute the java executable, please make sure the JAVA_HOME environment variable is set properly (the java executable should reside at JAVA_HOME/bin/java). "
