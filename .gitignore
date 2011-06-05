@@ -2,3 +2,4 @@ lib/
 *.pyc
 app/tmp
 scala_app/tmp
+.DS_Store
