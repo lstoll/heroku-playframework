@@ -1,1 +1,1 @@
-web: play-1.2.2RC1/play run scala_app --%prod -client -Xms128m -Xmx128m --http.port=$PORT
+web: play-1.2.2RC1/play run scala_app --%prod -client -Xms256m -Xmx256m --http.port=$PORT
